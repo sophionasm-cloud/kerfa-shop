@@ -13,8 +13,21 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-# Create .env file
-RUN cp .env.example .env
+# Create .env from environment variables
+RUN echo "APP_ENV=${APP_ENV}" >> .env && \
+    echo "APP_DEBUG=${APP_DEBUG}" >> .env && \
+    echo "APP_URL=${APP_URL}" >> .env && \
+    echo "DB_CONNECTION=${DB_CONNECTION}" >> .env && \
+    echo "DB_HOST=${DB_HOST}" >> .env && \
+    echo "DB_PORT=${DB_PORT}" >> .env && \
+    echo "DB_DATABASE=${DB_DATABASE}" >> .env && \
+    echo "DB_USERNAME=${DB_USERNAME}" >> .env && \
+    echo "DB_PASSWORD=${DB_PASSWORD}" >> .env && \
+    echo "SESSION_DRIVER=database" >> .env && \
+    echo "QUEUE_CONNECTION=database" >> .env && \
+    echo "CACHE_STORE=database" >> .env
+
+RUN php artisan key:generate
 
 EXPOSE 8000
 
