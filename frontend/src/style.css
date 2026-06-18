@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================
+   POWERPOINT SLIDE SYSTEM
+========================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* body {
+  overflow: hidden;
+} */
+
+/* MAIN SLIDE CONTAINER */
+.snap-y {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+/* EACH SLIDE */
+.snap-start {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* SECTION BASE FEEL */
+section {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* ===== CINEMATIC FADE ===== */
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+section {
+  animation: slideFadeIn 0.9s ease both;
+}
+
+/* ===== LUXURY FLOAT ===== */
+@keyframes floatSlow {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.luxury-float {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+/* ===== GOLD TEXT SHINE ===== */
+@keyframes shine {
+  0% { background-position: -200%; }
+  100% { background-position: 200%; }
+}
+
+.gold-shine {
+  background: linear-gradient(90deg, #D4A373, #FDEB9E, #D4A373);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 5s linear infinite;
+}
+
+/* ===== GLASS EFFECT ===== */
+.glass {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ===== SMOOTH NAV TRANSITION ===== */
+a {
+  transition: all 0.3s ease;
+}
