@@ -8,16 +8,21 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
-        });
+        // Only attempt to add the column if it doesn't already exist
+        if (!Schema::hasColumn('orders', 'user_id')) {
+            Schema::table('orders', function (Blueprint $table) {
+                $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
+            });
+        }
     }
 
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
-        });
+        if (Schema::hasColumn('orders', 'user_id')) {
+            Schema::table('orders', function (Blueprint $table) {
+                $table->dropForeign(['user_id']);
+                $table->dropColumn('user_id');
+            });
+        }
     }
 };
