@@ -1,15 +1,17 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 
-// --- PUBLIC ROUTES (No login needed) ---
+use Illuminate\Support\Facades\File;
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    return File::get(public_path('index.html'));
+})
 
 // Admin Login
 Route::post('/api/login', [AdminAuthController::class, 'login']);
