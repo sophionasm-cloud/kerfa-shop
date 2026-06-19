@@ -7,12 +7,6 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 
-// --- FRONTEND ROUTE ---
-// This serves your Vue index.html file
-Route::get('/', function () {
-    return File::get(public_path('index.html'));
-});
-
 // --- API ROUTES ---
 // Admin Login
 Route::post('/api/login', [AdminAuthController::class, 'login']);
@@ -39,4 +33,11 @@ Route::middleware('auth:sanctum')->group(function () {
     
     // Logout
     Route::post('/api/logout', [AuthController::class, 'logout']);
+});
+
+// --- FALLBACK ROUTE ---
+// This MUST be at the bottom. It catches any URL that isn't an API route 
+// and serves your Vue index.html, allowing Vue Router to manage navigation.
+Route::fallback(function () {
+    return File::get(public_path('index.html'));
 });
