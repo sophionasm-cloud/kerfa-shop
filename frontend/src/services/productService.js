@@ -1,8 +1,7 @@
 import axios from 'axios'
 
 // Use proxy URL, not full URL
-const API_URL = '/api/products'
-
+const API_URL = 'https://app-45694296-daec-4264-9167-45a65f5e680e.cleverapps.io/api/products'
 export const getProducts = async () => {
   try {
     const response = await axios.get(API_URL)
