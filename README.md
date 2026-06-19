@@ -4,8 +4,7 @@ A full-stack web application for Ethiopian coffee export and trade management. B
 
 ## 🚀 Live Demo
 
-- **Frontend:** https://sophionasm-cloud.github.io/kerfa-shop/
-- **Backend API:** https://kerfa-backend.onrender.com
+https://app-45694296-daec-4264-9167-45a65f5e680e.cleverapps.io/
 
 ## 📋 Features
 
