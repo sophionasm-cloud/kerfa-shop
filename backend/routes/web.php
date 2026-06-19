@@ -7,11 +7,12 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 
+// --- NEW CODE - USE THIS ---
 use Illuminate\Support\Facades\File;
 
 Route::get('/', function () {
     return File::get(public_path('index.html'));
-})
+});
 
 // Admin Login
 Route::post('/api/login', [AdminAuthController::class, 'login']);
