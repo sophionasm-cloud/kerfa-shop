@@ -33,11 +33,9 @@ const i18n = createI18n({
 
 const app = createApp(App)
 
-// ✅ Configure Axios (MUST be after app is created)
-// Replace 'https://your-clever-cloud-backend-url.com' with your actual Clever Cloud backend URL
 const API_BASE_URL = window.location.hostname === 'localhost' 
     ? 'http://127.0.0.1:8000' 
-    : 'https://your-clever-cloud-backend-url.com'; 
+    : 'https://app-45694296-daec-4264-9167-45a65f5e680e.cleverapps.io'; 
 
 axios.defaults.baseURL = API_BASE_URL;
 axios.defaults.headers.common['Accept'] = 'application/json';
