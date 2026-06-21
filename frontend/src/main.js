@@ -33,9 +33,8 @@ const i18n = createI18n({
 
 const app = createApp(App)
 
-const API_BASE_URL = window.location.hostname === 'localhost' 
-    ? 'http://127.0.0.1:8000' 
-    : 'https://app-45694296-daec-4264-9167-45a65f5e680e.cleverapps.io'; 
+// Replace your existing API_BASE_URL block with this:
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://app-45694296-daec-4264-9167-45a65f5e680e.cleverapps.io';
 
 axios.defaults.baseURL = API_BASE_URL;
 axios.defaults.headers.common['Accept'] = 'application/json';
