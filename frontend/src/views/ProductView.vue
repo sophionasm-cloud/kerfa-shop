@@ -10,10 +10,7 @@
         :key="product.id"
         class="bg-white/5 backdrop-blur-lg p-6 rounded-3xl border border-white/10 hover:scale-105 transition"
       >
-        <img
-          :src="product.image ? 'http://127.0.0.1:8000/' + product.image : 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500'"
-          class="w-full h-56 object-cover rounded-2xl mb-4"
-        />
+       :src="product.image ? axios.defaults.baseURL + '/' + product.image : 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500'"
 
         <h2 class="text-2xl font-bold text-[#FDEB9E]">
           {{ product.name }}

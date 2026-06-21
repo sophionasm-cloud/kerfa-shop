@@ -167,7 +167,7 @@ const handleFormSubmit = async () => {
   
   try {
     // API transmission over to the backend pipeline
-    const response = await axios.post('http://127.0.0.1:8000/api/contact', formData.value)
+    const response = await axios.post('/api/contact', formData.value)
     
     isSuccess.value = true
     feedbackMessage.value = response.data.message // Uses the success text set in Laravel response
