@@ -50,7 +50,7 @@ const { addToCart } = useCart()
 
 const loadProducts = async () => {
   try {
-    const response = await axios.get('/api/products')  // Remove http://127.0.0.1:8000
+    const response = await axios.get('/api/products')  
     products.value = response.data
   } catch (error) {
     console.error(error)
