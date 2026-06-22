@@ -72,8 +72,10 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import axios from 'axios'
 import { useRouter } from 'vue-router'
+
+// ✅ IMPORTANT: use global axios (NOT axios import)
+const axios = window.axios
 
 const router = useRouter()
 const isSignUp = ref(false)
@@ -92,7 +94,7 @@ const handleSubmit = async () => {
 
   try {
     let response
-    
+
     if (isSignUp.value) {
       // REGISTER
       response = await axios.post('/api/register', {
@@ -100,10 +102,10 @@ const handleSubmit = async () => {
         email: form.email,
         password: form.password
       })
-      
+
       feedbackMessage.value = 'Registration complete! Please sign in.'
-      isError.value = false
       isSignUp.value = false
+
       form.name = ''
       form.email = ''
       form.password = ''
@@ -115,28 +117,21 @@ const handleSubmit = async () => {
       })
 
       console.log('Full response:', response.data)
-      console.log('User data:', response.data.user)
-      console.log('is_admin value:', response.data.user.is_admin)
 
       if (response.data.token) {
-        // Save user_token for EVERYONE
         localStorage.setItem('user_token', response.data.token)
         localStorage.setItem('user', JSON.stringify(response.data.user))
-        
-        // Check if user is admin - FIXED
+
         if (response.data.user.is_admin) {
-          // ONLY ADMIN gets admin_token
-          console.log('User is ADMIN!')
           localStorage.setItem('admin_token', response.data.token)
           localStorage.setItem('admin_user', JSON.stringify(response.data.user))
+
           feedbackMessage.value = 'Welcome Admin! ☕'
           router.push('/admin/dashboard')
         } else {
-          // Regular user - NO admin_token
-          console.log('User is REGULAR')
-          // REMOVE any existing admin_token
           localStorage.removeItem('admin_token')
           localStorage.removeItem('admin_user')
+
           feedbackMessage.value = 'Logged in successfully! ☕'
           router.push('/products')
         }
@@ -145,7 +140,8 @@ const handleSubmit = async () => {
   } catch (error) {
     isError.value = true
     console.error('Error:', error.response?.data || error.message)
-    feedbackMessage.value = error.response?.data?.message || 'Authentication failed!'
+    feedbackMessage.value =
+      error.response?.data?.message || 'Authentication failed!'
   }
 }
 </script>
